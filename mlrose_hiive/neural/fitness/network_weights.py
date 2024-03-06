@@ -145,7 +145,8 @@ class NetworkWeights:
                 self.y_pred = self.output_activation(outputs)
 
         # Evaluate loss function
-        fitness = -1 * self.loss(self.y_true, self.y_pred)
+        # fitness = -1 * self.loss(self.y_true, self.y_pred)
+        fitness = self.loss(self.y_true, self.y_pred)
 
         return fitness
 
