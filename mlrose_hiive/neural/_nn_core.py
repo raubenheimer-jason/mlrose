@@ -42,6 +42,7 @@ class _NNCore(_NNBase):
         max_attempts=10,
         random_state=None,
         curve=False,
+        maximize=True,
     ):
 
         super().__init__()
@@ -71,6 +72,7 @@ class _NNCore(_NNBase):
         self.max_attempts = max_attempts
         self.random_state = random_state
         self.curve = curve
+        self.maximize = maximize
 
         self.node_list = []
         self.fitted_weights = []
@@ -86,6 +88,9 @@ class _NNCore(_NNBase):
             and not self.max_iters.is_integer()
         ) or (self.max_iters < 0):
             raise Exception("""max_iters must be a positive integer.""")
+
+        if not isinstance(self.maximize, bool):
+            raise Exception("""maximize must be True or False.""")
 
         if not isinstance(self.bias, bool):
             raise Exception("""bias must be True or False.""")
@@ -177,6 +182,7 @@ class _NNCore(_NNBase):
             self.bias,
             self.clip_max,
             self.is_classifier,
+            maximize=self.maximize,
         )
 
         if self.algorithm == "random_hill_climb":
