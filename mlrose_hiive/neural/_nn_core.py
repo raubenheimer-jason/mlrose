@@ -256,7 +256,7 @@ class _NNCore(_NNBase):
                 curve=self.curve,
             )
         else:
-            fitted_weights, loss, _ = simulated_annealing(
+            fitted_weights, loss = simulated_annealing(
                 problem,
                 schedule=self.schedule,
                 max_attempts=self.max_attempts if self.early_stopping else self.max_iters,
